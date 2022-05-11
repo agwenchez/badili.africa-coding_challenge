@@ -27,14 +27,42 @@ app.get('/', (req, res) => {
                     return;
                 }
 
-                res.status(200).json({ "Message": `Result save succesfully:${result}` })
+                res.status(200).json({ "Message": `Result:${result} save succesfully` })
             });
+
         } else if (integer % 7 === 0) {
-            res.status(200).json({ "response": "R" })
+            
+            const result = "R"
+
+            saveResultToPublicFolder(result, function (err) {
+                if (err) {
+                    res.status(500).send(`Error occured:${err}`);
+                    return;
+                }
+
+                res.status(200).json({ "Message": `Result:${result} save succesfully` })
+            });
         } else if (integer % 5 === 0) {
-            res.status(200).json({ "response": "L" })
+            const result = "L"
+
+            saveResultToPublicFolder(result, function (err) {
+                if (err) {
+                    res.status(500).send(`Error occured:${err}`);
+                    return;
+                }
+
+                res.status(200).json({ "Message": `Result:${result} save succesfully` })
+            });
         } else {
-            res.status(200).json({ "response": integer })
+            const result = integer
+
+            saveResultToPublicFolder(result, function (err) {
+                if (err) {
+                    res.status(500).send(`Error occured:${err}`);
+                    return;
+                }
+                res.status(200).json({ "Message": `Result:${result} save succesfully` })
+            });
         }
     }
 })
